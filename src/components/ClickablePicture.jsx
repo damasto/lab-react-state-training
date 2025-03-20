@@ -8,6 +8,8 @@ export function ClickablePicture () {
     const [picture, setPicture] = useState(guy);
     const [imgAlt, setImgAlt] = useState("a guy");
 
+    console.log("picture ", picture)
+
     const togglePicture = () => {
         if (picture === guy ) {
             setPicture(guyGlasses)

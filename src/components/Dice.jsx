@@ -11,6 +11,10 @@ import dice6 from "../assets/images/dice6.png";
 export function Dice () {
     const dices = [
       {
+        dice: diceEmpty,
+        alt: "dice is rolling"
+      },
+      {
         dice: dice1,
         alt: "Dice showing one",
       },
@@ -36,15 +40,27 @@ export function Dice () {
       },
     ];
 
+    const emptyDice = dices[0]
+
     const randomDice = () => {
-        const randomNr = Math.floor(Math.random() * 6)
+        const randomNr = Math.floor((Math.random() * 6) +1)
         return dices[randomNr]
     }
 
     const [dice, setDice] = useState(randomDice())
-    console.log(dice)
+
+    const rollDice = () => {
+        setDice(emptyDice);
+        setTimeout(() => {
+            setDice(randomDice)
+        }, 1000)
+    }
 
     return (
-    <img src={dice} alt="" />
+        <>
+        <div>
+            <img onClick={rollDice} className="dice" src={dice.dice} alt={dice.alt} />
+        </div>
+        </>
     )
 }
