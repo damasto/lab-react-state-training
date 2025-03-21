@@ -8,34 +8,33 @@ import dice5 from "../assets/images/dice5.png";
 import dice6 from "../assets/images/dice6.png";
 
 
-export function Dice () {
+export function Dice ({randomNr}) {
     const dices = [
       {
-        dice: diceEmpty,
-        alt: "dice is rolling"
-      },
+        number: diceEmpty,
+        alt: "dice is rolling"},
       {
-        dice: dice1,
+        number: dice1,
         alt: "Dice showing one",
       },
       {
-        dice: dice2,
+        number: dice2,
         alt: "Dice showing two",
       },
       {
-        dice: dice3,
+        number: dice3,
         alt: "Dice showing three",
       },
       {
-        dice: dice4,
+        number: dice4,
         alt: "Dice showing four",
       },
       {
-        dice: dice5,
+        number: dice5,
         alt: "Dice showing five",
       },
       {
-        dice: dice6,
+        number: dice6,
         alt: "Dice showing six",
       },
     ];
@@ -43,23 +42,28 @@ export function Dice () {
     const emptyDice = dices[0]
 
     const randomDice = () => {
-        const randomNr = Math.floor((Math.random() * 6) +1)
-        return dices[randomNr]
+  
+        return dices[randomNr(6, 1)]
     }
 
     const [dice, setDice] = useState(randomDice())
 
     const rollDice = () => {
-        setDice(emptyDice);
+
+        setDice(emptyDice)
+        console.log("empty", emptyDice)
+        console.log("first log", dice)
         setTimeout(() => {
             setDice(randomDice)
         }, 1000)
+
+        console.log("second log", dice);
     }
 
     return (
         <>
         <div>
-            <img onClick={rollDice} className="dice" src={dice.dice} alt={dice.alt} />
+            <img onClick={rollDice} className="dice" src={dice.number} alt={dice.alt} />
         </div>
         </>
     )
